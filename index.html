@@ -1,1 +1,1143 @@
-
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11-р ангийн Монголын түүх</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+Mongolian:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8B4513;
+            --secondary: #D4AF37;
+            --accent: #C41E3A;
+            --dark: #2C1810;
+            --light: #F5E6D3;
+            --text: #3A2617;
+        }
+        
+        body {
+            font-family: 'Noto Sans Mongolian', 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 100%);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--light);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.05) 10px,
+                rgba(212, 175, 55, 0.05) 20px
+            );
+            animation: patternMove 20s linear infinite;
+        }
+        
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .nav-links a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        /* Section Styles */
+        section {
+            background: white;
+            margin-bottom: 2.5rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--light);
+            padding: 1.8rem 1.5rem;
+            position: relative;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-number {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 0.8rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Subsection */
+        .subsection {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        }
+        
+        .subsection:last-child {
+            border-bottom: none;
+        }
+        
+        .subsection h3 {
+            color: var(--primary);
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .subsection h3::before {
+            content: '';
+            color: var(--secondary);
+            font-size: 1.2em;
+        }
+        
+        .subsection h3 {
+            counter-increment: subsection;
+        }
+        
+        section {
+            counter-reset: subsection;
+        }
+        
+        .subsection h3::after {
+            content: " [" counter(subsection) "]";
+            color: var(--secondary);
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+        
+        /* Image Styles */
+        .image-container {
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
+            background: rgba(44, 24, 16, 0.85);
+            color: var(--light);
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+        
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--light);
+        }
+        
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        td {
+            padding: 0.9rem 1rem;
+            border: 1px solid rgba(139, 69, 19, 0.15);
+        }
+        
+        tbody tr:nth-child(even) {
+            background: rgba(245, 230, 211, 0.3);
+        }
+        
+        tbody tr:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transition: background 0.3s ease;
+        }
+        
+        /* Content Blocks */
+        .content-block {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 69, 19, 0.05) 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            border-radius: 8px;
+        }
+        
+        .content-block p {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+        
+        .content-block ul {
+            margin-left: 1.5rem;
+            margin-top: 0.8rem;
+        }
+        
+        .content-block li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent) 0%, #A01728 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 6px 20px rgba(196, 30, 58, 0.3);
+        }
+        
+        .highlight-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.10rem;
+            }
+            
+            .nav-links {
+                gap: 0.8rem;
+            }
+            
+            .nav-links a {
+                padding: 0.3rem 0.1rem;
+                font-size: 0.85rem;
+            }
+            
+            .subsection {
+                padding: 1.5rem 1rem;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 0.6rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 1.8rem 1rem;
+            }
+            
+            .container {
+                margin: 1rem auto;
+                padding: 0 0.8rem;
+            }
+            
+            .section-header {
+                padding: 1.3rem 1rem;
+            }
+            
+            .section-number {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Монголын түүх</h1>
+        <p class="subtitle"></p>
+    </header>
+    
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#section1"><strong>XVII-XX зууны эхэн
+              үеийн Монгол</strong></a></li>
+          <li><a href="#section2"><strong>Монгол улс сэргэн мандсан нь 1911-1924 он</strong></a></li>
+          <li><a href="#section3"><strong>БНМАУ социализмын замаар 1924-1990 он</strong></a></li>
+            <li><a href="#section4"><strong>Монгол улс ардчилал, шинэчлэлийн замаар 1990 оноос өдгөө</strong></a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- СЭДЭВ 1: МОНГОЛЫН ЭЗЭНТ ГҮРЭН -->
+        <section id="section1">
+            <div class="section-header">
+                <h2><span class="section-number">1</span>МОНГОЛ УЛС МАНЖИЙН ЭРХШЭЭЛД
+ОРСОН НЬ</h2>
+            </div>
+            
+            <!-- Задаргаа 1 -->
+            <div class="subsection">
+                <h3>Чингис хааны үүсгэн байгуулсан эзэнт гүрэн</h3>
+                <div class="content-block">
+                    <p><strong>1206 он</strong> - Онон голын эрэгт болсон Их хуралд Тэмүүжин Чингис хаан цолыг хүртэж, Монголын улс тогтоосон түүхэн үйл явдал болжээ. Энэ нь дэлхийн хамгийн том эзэнт гүрний эхлэл байв.</p>
+                    
+                    <ul>
+                        <li><strong>Цэргийн шинэчлэл:</strong> Арван, зуун, мянган, түмний тогтолцоо бий болгосон</li>
+                        <li><strong>Хууль эрх зүй:</strong> "Их засаг" хууль батлагдсан</li>
+                        <li><strong>Захиргаа:</strong> Төвлөрсөн засаглалын тогтолцоо бий болсон</li>
+                        <li><strong>Бичиг үсэг:</strong> Уйгур үсгийг дэлгэрүүлсэн</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="Screen Shot 2026-05-26 at 15.51.44.png" alt="Чингис хааны хөшөө">
+                    <div class="image-caption">Чингис хааны хөшөө - Монголын бахархал</div>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Он</th>
+                                <th>Үйл явдал</th>
+                                <th>Ач холбогдол</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1206</td>
+                                <td>Монголын улс байгуулагдсан</td>
+                                <td>Эзэнт гүрний үндэс суурь тавигдсан</td>
+                            </tr>
+                            <tr>
+                                <td>1211-1234</td>
+                                <td>Алтан улс эзлэгдсэн</td>
+                                <td>Хятадын хойд хэсэг эзэмшсэн</td>
+                            </tr>
+                            <tr>
+                                <td>1219-1224</td>
+                                <td>Баруун экспедиц</td>
+                                <td>Хорезм, Хойд Энэтхэг эзлэгдсэн</td>
+                            </tr>
+                            <tr>
+                                <td>1227</td>
+                                <td>Чингис хаан нас барсан</td>
+                                <td>Үр удмууд засгийг залгамжлуулсан</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 2 -->
+            <div class="subsection">
+                <h3>Өгэдэй хаан ба эзэнт гүрний тэлэлт</h3>
+                <div class="content-block">
+                    <p>Өгэдэй хаан (1229-1241) Чингис хааны гуравдагч хүү бөгөөд түүний удмаар Монголын гурав дахь их хаан болсон. Түүний үед эзэнт гүрэн хамгийн их тэлжээ.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🌟 Гол ололт амжилтууд:</h4>
+                    <p>• <strong>Хаархорум хот</strong> - Ниислэл хот байгуулсан (1235)<br>
+                    • <strong>Өртөө тогтолцоо</strong> - Торгоны замын сүлжээ бий болгосон<br>
+                    • <strong>Европ руу дайн</strong> - Бату хааны ахалсан цэргүүд Европыг эзлэн авч эхэлсэн<br>
+                    • <strong>Эдийн засаг</strong> - Жаам, зоос гаргасан</p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Mongol_Empire_map.gif/800px-Mongol_Empire_map.gif" alt="Монголын эзэнт гүрний газрын зураг">
+                    <div class="image-caption">Монголын эзэнт гүрний хамгийн их газар нутаг (13-р зуун)</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 3 -->
+            <div class="subsection">
+                <h3>Хубилай хаан ба Их Юань улс</h3>
+                <div class="content-block">
+                    <p>Хубилай хаан (1260-1294) Монголын тав дахь их хаан бөгөөд Их Юань улсыг (1271-1368) байгуулсан. Тэрээр Монголын уламжлал болон Хятадын соёлыг хослуулах бодлого баримталсан.</p>
+                    
+                    <ul>
+                        <li>Ниислэлийг Ханбалык (одоогийн Бээжин) руу шилжүүлсэн</li>
+                        <li>Бөх Хятадыг нэгтгэж, Сун улсыг эзлэн авсан (1279)</li>
+                        <li>Худалдааг дэмжиж, Торгоны замыг хөгжүүлсэн</li>
+                        <li>Марко Поло зэрэг европ аялагчдыг хүлээн авсан</li>
+                    </ul>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Салбар</th>
+                                <th>Шинэчлэл</th>
+                                <th>Үр дүн</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Хууль эрх зүй</td>
+                                <td>Хятад-монголын хосолсон тогтолцоо</td>
+                                <td>Засаг захиргааны тогтвортой байдал</td>
+                            </tr>
+                            <tr>
+                                <td>Худалдаа</td>
+                                <td>Торгоны замын дэмжлэг</td>
+                                <td>Дорно ба Барууны холбоо сайжирсан</td>
+                            </tr>
+                            <tr>
+                                <td>Соёл урлаг</td>
+                                <td>Монгол-хятад уран зохиол хөгжсөн</td>
+                                <td>Соёлын алтан үе</td>
+                            </tr>
+                            <tr>
+                                <td>Шинжлэх ухаан</td>
+                                <td>Одон орон, математикийн хөгжил</td>
+                                <td>Шинжлэх ухааны ахиц дэвшил</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 4 -->
+            <div class="subsection">
+                <h3>Эзэнт гүрний задрал</h3>
+                <div class="content-block">
+                    <p>14-р зууны эхээр Монголын эзэнт гүрэн дотоод зөрчил, эдийн засгийн хямрал, орон нутгийн бослогын улмаас задарч эхэлсэн.</p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/YuanEmperorAlbumKhubilaiPortrait.jpg/400px-YuanEmperorAlbumKhubilaiPortrait.jpg" alt="Хубилай хаан">
+                    <div class="image-caption">Хубилай хаан - Их Юань улсын үүсгэн байгуулагч</div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>⚠️ Задрах шалтгаанууд:</h4>
+                    <p>• Төрийн удирдлагын сулралт<br>
+                    • Татварын хүнд дарамт<br>
+                    • Цагаан будааны бослого (1351-1368)<br>
+                    • Алсын нутгийн хаант улсуудын бие даасан болох<br>
+                    • 1368 онд Мин улс Юаныг нураасан</p>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 5 -->
+            <div class="subsection">
+                <h3>Эзэнт гүрний өв соёл</h3>
+                <div class="content-block">
+                    <p>Монголын эзэнт гүрэн дэлхийн соёл, худалдаа, технологийн хөгжилд томоохон үүрэг гүйцэтгэсэн.</p>
+                    
+                    <ul>
+                        <li><strong>Худалдааны холбоо:</strong> Ази, Европыг холбосон Торгоны зам өргөжсөн</li>
+                        <li><strong>Технологийн дамжуулалт:</strong> Хэвлэлийн технологи, дарь, цаасан мөнгө зэрэг Европт дамжсан</li>
+                        <li><strong>Шашны хүлцэл:</strong> Олон шашны шүтлэгийг хүлээн зөвшөөрсөн</li>
+                        <li><strong>Хууль эрх зүй:</strong> Засаг захиргааны системийн суурийг тавьсан</li>
+                        <li><strong>Соёлын солилцоо:</strong> Дорно болон Барууны соёлын харилцан солилцоо идэвхжсэн</li>
+                    </ul>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Өв соёл</th>
+                                <th>Тодорхойлолт</th>
+                                <th>Орчин үеийн нөлөө</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Торгоны зам</td>
+                                <td>Ази-Европын худалдааны сүлжээ</td>
+                                <td>Дэлхийн эдийн засгийн нэгдэл</td>
+                            </tr>
+                            <tr>
+                                <td>Өртөө тогтолцоо</td>
+                                <td>Зам, харилцааны систем</td>
+                                <td>Орчин үеийн шуудан үйлчилгээ</td>
+                            </tr>
+                            <tr>
+                                <td>Засаг захирга</td>
+                                <td>Төвлөрсөн удирдлага</td>
+                                <td>Төрийн удирдлагын загвар</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- СЭДЭВ 2: МАН УЛС -->
+        <section id="section2">
+            <div class="section-header">
+                <h2><span class="section-number">2</span>Манж улсын эрх мэдлийн үе (1691-1911)</h2>
+            </div>
+            
+            <!-- Задаргаа 1 -->
+            <div class="subsection">
+                <h3>Манжийн эзлэн түрэмгийлэл</h3>
+                <div class="content-block">
+                    <p><strong>1691 оны Долоннуурын чуулга</strong> - Халх Монголын ноёд Манжийн Чин улсад захиран захирагдахаар шийдсэн түүхэн чухал үйл явдал юм.</p>
+                    
+                    <ul>
+                        <li>Өвөр Монгол 1636 онд, Халх Монгол 1691 онд Манж улсад захирагдаж эхэлсэн</li>
+                        <li>Засаг захиргааны хувьд хошуу, аймаг, чуулганы тогтолцоо бий болсон</li>
+                        <li>Манжийн эзэн хаан Монголын эзэн ч гэсэн цол хүртсэн</li>
+                        <li>Монголын өвөрмөц ёс заншил, зарим эрхийг хадгалсан</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Anonymous-Qing_Dynasty_Kangxi_Emperor.jpg/400px-Anonymous-Qing_Dynasty_Kangxi_Emperor.jpg" alt="Канси эзэн хаан">
+                    <div class="image-caption">Канси эзэн хаан - Халхыг Манжид нэгтгэсэн</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 2 -->
+            <div class="subsection">
+                <h3>Засаг захиргааны бүтэц</h3>
+                <div class="content-block">
+                    <p>Манжийн Чин улс Монголд давхар удирдлагын тогтолцоо бий болгож, эрх мэдлийг төвлөрүүлэх бодлого явуулсан.</p>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Түвшин</th>
+                                <th>Нэгж</th>
+                                <th>Удирдагч</th>
+                                <th>Үүрэг</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Төв</td>
+                                <td>Лифан Юань</td>
+                                <td>Ван нойд</td>
+                                <td>Монголын харилцааны хэлтэс</td>
+                            </tr>
+                            <tr>
+                                <td>Бүс нутаг</td>
+                                <td>Чуулган</td>
+                                <td>Жангин, Амбан</td>
+                                <td>Цэрэг, засаглал</td>
+                            </tr>
+                            <tr>
+                                <td>Аймаг</td>
+                                <td>Аймаг</td>
+                                <td>Засаг ноён</td>
+                                <td>Орон нутгийн засаг</td>
+                            </tr>
+                            <tr>
+                                <td>Хошуу</td>
+                                <td>Хошуу</td>
+                                <td>Жасаг</td>
+                                <td>Суурин захиргаа</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>📜 Манжийн хууль дүрэм:</h4>
+                    <p>• Монголчууд хоорондоо гэрлэх ёстой (Манж, Хятадтай хориотой)<br>
+                    • Газар тариалан эрхлэхийг хориглосон<br>
+                    • Цэргийн албан дахь татвар хүнд байсан<br>
+                    • Шашны ёслол, хурлаар дамжуулж удирдсан</td>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 3 -->
+            <div class="subsection">
+                <h3>Нийгэм, эдийн засаг</h3>
+                <div class="content-block">
+                    <p>Манжийн эрх мэдлийн үед Монголын нийгэм, эдийн засагт томоохон өөрчлөлт гарсан.</p>
+                    
+                    <ul>
+                        <li><strong>Малчин нүүдлийн амьдрал:</strong> Уламжлалт амьжиргааг үргэлжлүүлсэн</li>
+                        <li><strong>Худалдаа:</strong> Хятад, Орос улстай худалдаа өргөжсөн</li>
+                        <li><strong>Татвар:</strong> Малын албан татвар, цэргийн албыг тогтоосон</li>
+                        <li><strong>Өр төлбөр:</strong> Хятад худалдаачдад өртэй болох</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Mongolian_horseman_in_the_steppe.jpg/800px-Mongolian_horseman_in_the_steppe.jpg" alt="Монгол морьтон">
+                    <div class="image-caption">Уламжлалт нүүдлийн амьдрал - Монголын соёлын үндэс</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 4 -->
+            <div class="subsection">
+                <h3>Шашин, соёлын үүрэг</h3>
+                <div class="content-block">
+                    <p>Манжийн засгийн үед Лам шашин (Тибет буддизм) Монголд ихээхэн дэлгэрч, улс төрд чухал нөлөөтэй болсон.</p>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Хийд сүм</th>
+                                <th>Байршил</th>
+                                <th>Байгуулагдсан он</th>
+                                <th>Ач холбогдол</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Эрдэнэ Зуу</td>
+                                <td>Хархорум</td>
+                                <td>1585</td>
+                                <td>Монголын анхны хийд</td>
+                            </tr>
+                            <tr>
+                                <td>Амарбаясгалант</td>
+                                <td>Сэлэнгэ</td>
+                                <td>1736</td>
+                                <td>Соёлын төв</td>
+                            </tr>
+                            <tr>
+                                <td>Гандантэгчинлэн</td>
+                                <td>Их хүрээ</td>
+                                <td>1835</td>
+                                <td>Улаанбаатарын хамгийн том хийд</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>☸️ Шашны нөлөө:</h4>
+                    <p>• Нийгмийн 30-40% нь лам болсон<br>
+                    • Боловсрол, эрдэм шинжилгээний төв болсон<br>
+                    • Эмнэлэг, сургуулийн үүрэг гүйцэтгэсэн<br>
+                    • Манжийн бодлогыг дэмжих хэрэгсэл болсон</p>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 5 -->
+            <div class="subsection">
+                <h3>Эсэргүүцэл, бослогууд</h3>
+                <div class="content-block">
+                    <p>Манжийн дарамтын эсрэг 18-19-р зуунд олон бослого дэгдсэн ч амжилтгүй болжээ.</p>
+                    
+                    <ul>
+                        <li><strong>Чингүнжавын бослого (1756-1757):</strong> Манжийн засаглалыг эсэргүүцсэн томоохон бослого</li>
+                        <li><strong>Амарсанаагийн хөдөлгөөн:</strong> Зүүнгарын эсэргүүцэл</li>
+                        <li><strong>19-р зууны бослогууд:</strong> Орон нутгийн ард түмний эсэргүүцэл</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Gandan_Khiid.jpg/800px-Gandan_Khiid.jpg" alt="Гандан хийд">
+                    <div class="image-caption">Гандантэгчинлэн хийд - Монголын шашин, соёлын бэлгэ тэмдэг</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- СЭДЭВ 3: ТУСГААР ТОГТНОЛ -->
+        <section id="section3">
+            <div class="section-header">
+                <h2><span class="section-number">3</span>Монголын тусгаар тогтнол (1911-1921)</h2>
+            </div>
+            
+            <!-- Задаргаа 1 -->
+            <div class="subsection">
+                <h3>Богд хааны Монгол улс (1911-1919)</h3>
+                <div class="content-block">
+                    <p><strong>1911 оны 12-р сарын 29</strong> - Монгол Улс тусгаар тогтнолоо зарласан түүхэн өдөр. VIII Богд гэгээн Жавзандамба хутагт Монголын хаан болж, эрхт хаант засаглал бий болсон.</p>
+                    
+                    <ul>
+                        <li>Манжийн Чин улс нуран унаж, Хятадад бүгд найрамдах улс байгуулагдсан</li>
+                        <li>Монголын ноёд тусгаар тогтнолоо зарлах шийдвэр гаргасан</li>
+                        <li>Богд хааныг дээдлэн өргөж, эрхт хаант засаглал тогтоосон</li>
+                        <li>Засгийн газар, цэрэг, дипломат албыг байгуулсан</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/8-Bogd-gegen.jpg/400px-8-Bogd-gegen.jpg" alt="VIII Богд гэгээн">
+                    <div class="image-caption">VIII Богд гэгээн Жавзандамба - Монголын эхний хаан</div>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Он</th>
+                                <th>Үйл явдал</th>
+                                <th>Үр дүн</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1911.12.29</td>
+                                <td>Тусгаар тогтнол зарласан</td>
+                                <td>Богд хааны Монгол улс үүссэн</td>
+                            </tr>
+                            <tr>
+                                <td>1913</td>
+                                <td>Орос-Монголын хэлэлцээр</td>
+                                <td>Оросын хүлээн зөвшөөрөл</td>
+                            </tr>
+                            <tr>
+                                <td>1915</td>
+                                <td>Хиагтын гэрээ</td>
+                                <td>Автономи хязгаарлагдсан</td>
+                            </tr>
+                            <tr>
+                                <td>1919</td>
+                                <td>Хятадын эзлэн түрэмгийлэл</td>
+                                <td>Тусгаар тогтнол устгагдсан</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 2 -->
+            <div class="subsection">
+                <h3>Засаг захиргааны өөрчлөлт</h3>
+                <div class="content-block">
+                    <p>Богд хааны засгийн үед орчин үеийн улс төрийн байгууллагууд анх удаа бий болсон.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🏛️ Шинэ байгууллагууд:</h4>
+                    <p>• <strong>Засгийн газар:</strong> Таван яам бүхий (Гадаад, Дотоод, Цэрэг, Шүүх, Сан)<br>
+                    • <strong>Ардын хурал:</strong> Төлөөлөгчдийн байгууллага<br>
+                    • <strong>Цэрэг:</strong> Шинэ загварын цэргийн анги байгуулсан<br>
+                    • <strong>Валют:</strong> Өөрийн мөнгөн тэмдэгт гаргасан</p>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 3 -->
+            <div class="subsection">
+                <h3>Гадаад харилцаа</h3>
+                <div class="content-block">
+                    <p>Монгол Улс олон улстай харилцаа тогтоох оролдлого хийсэн боловч хязгаарлагдмал амжилт олсон.</p>
+                    
+                    <ul>
+                        <li><strong>Орос:</strong> Анхны хүлээн зөвшөөрсөн гүрэн</li>
+                        <li><strong>Хятад:</strong> Тусгаар тогтнолыг хүлээн зөвшөөрөхгүй байсан</li>
+                        <li><strong>Японы хойт Монгол:</strong> Зарим харилцаа тогтоосон</li>
+                        <li><strong>Барууны гүрнүүд:</strong> Тодорхой байр суурь илэрхийлээгүй</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Mongolia_1912.jpg/800px-Mongolia_1912.jpg" alt="1912 оны Монгол Улс">
+                    <div class="image-caption">1912 оны Монгол Улсын газрын зураг</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 4 -->
+            <div class="subsection">
+                <h3>Хятадын эзлэн түрэмгийлэл (1919-1921)</h3>
+                <div class="content-block">
+                    <p>1919 онд Хятадын цэрэг Монголд довтолж, Богд хааны тусгаар тогтнолыг устгасан. Энэ нь хүнд хэцүү үе байлаа.</p>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Он сар</th>
+                                <th>Үйл явдал</th>
+                                <th>Нөлөө</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1919.11</td>
+                                <td>Сюй Шучжэнгийн эзлэн авалт</td>
+                                <td>Автономи цуцлагдсан</td>
+                            </tr>
+                            <tr>
+                                <td>1920</td>
+                                <td>Хятадын цэрэг дарамт</td>
+                                <td>Монголчууд эсэргүүцсэн</td>
+                            </tr>
+                            <tr>
+                                <td>1921.02</td>
+                                <td>Унгерн барон эзлэн авалт</td>
+                                <td>Богд хаан эрх мэдэлдээ эргэн орсон</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 5 -->
+            <div class="subsection">
+                <h3>Ардын хувьсгал (1921)</h3>
+                <div class="content-block">
+                    <p><strong>1921 оны 3-р сарын 1</strong> - Монголын Ардын Хувьсгалт Нам байгуулагдсан. <strong>1921 оны 7-р сарын 11</strong> - Ардын хувьсгал ялж, Ардын засгийн газар байгуулагдсан өдөр.</p>
+                    
+                    <ul>
+                        <li>Сүхбаатар, Чойбалсан зэрэг залуу удирдагчид гарч ирсэн</li>
+                        <li>ЗХУ-ын дэмжлэгтэйгээр хувьсгал хийсэн</li>
+                        <li>Хятад, Унгерны цэргийг Монголоос зайлуулсан</li>
+                        <li>Ардын засгийн газар байгуулагдсан</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sukhbaatar_on_horse.jpg/800px-Sukhbaatar_on_horse.jpg" alt="Сүхбаатарын хөшөө">
+                    <div class="image-caption">Дамдины Сүхбаатар - Ардын хувьсгалын баатар</div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>⭐ Хувьсгалын ач холбогдол:</h4>
+                    <p>• Монголын бие даасан байдал эргэн тогтсон<br>
+                    • Социалист замыг сонгосон<br>
+                    • Орчин үеийн төрийн үндэс тавигдсан<br>
+                    • ЗХУ-тай найрамдалт харилцаа тогтсон</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- СЭДЭВ 4: ОРЧИН ҮЕИЙН МОНГОЛ -->
+        <section id="section4">
+            <div class="section-header">
+                <h2><span class="section-number">4</span>Орчин үеийн Монгол Улс (1924-өнөөг хүртэл)</h2>
+            </div>
+            
+            <!-- Задаргаа 1 -->
+            <div class="subsection">
+                <h3>Бүгд Найрамдах Монгол Ард Улс (1924-1992)</h3>
+                <div class="content-block">
+                    <p><strong>1924 оны 11-р сарын 26</strong> - Дэлхийн хоёрдахь социалист улс болох Бүгд Найрамдах Монгол Ард Улс тунхагласан өдөр.</p>
+                    
+                    <ul>
+                        <li>Богд хаан таалал төгссөний дараа бүгд найрамдах улс болсон</li>
+                        <li>Социалист хөгжлийн замыг сонгосон</li>
+                        <li>ЗХУ-ын загвараар улс төр, эдийн засгийг өөрчлөсөн</li>
+                        <li>Хувьчлал, коллективжуулалт явагдсан</li>
+                    </ul>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Үе шат</th>
+                                <th>Он</th>
+                                <th>Гол үйл явдал</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Анхны үе</td>
+                                <td>1924-1930</td>
+                                <td>Социалист үндэс суурь тавих</td>
+                            </tr>
+                            <tr>
+                                <td>Хувьчлал</td>
+                                <td>1930-1940</td>
+                                <td>Нийгэм, эдийн засгийн өөрчлөлт</td>
+                            </tr>
+                            <tr>
+                                <td>Дайны үе</td>
+                                <td>1939-1945</td>
+                                <td>Халх голын дайн, Дэлхийн 2-р дайн</td>
+                            </tr>
+                            <tr>
+                                <td>Хөгжлийн үе</td>
+                                <td>1950-1990</td>
+                                <td>Аж үйлдвэржилт, боловсрол</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 2 -->
+            <div class="subsection">
+                <h3>Социалист өөрчлөлтүүд</h3>
+                <div class="content-block">
+                    <p>БНМАУ-ын үед Монгол Улсад томоохон нийгэм, эдийн засгийн өөрчлөлтүүд болсон.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🏭 Өөрчлөлтийн чиглэлүүд:</h4>
+                    <p>• <strong>Аж үйлдвэржилт:</strong> Үйлдвэр, олборлолт хөгжсөн<br>
+                    • <strong>Коллективжуулалт:</strong> Нэгдлийн тогтолцоо бий болсон<br>
+                    • <strong>Боловсрол:</strong> Түгээмэл үнэгүй боловсрол<br>
+                    • <strong>Эрүүл мэнд:</strong> Нийгмийн эрүүл мэндийн тогтолцоо<br>
+                    • <strong>Соёл:</strong> Монгол бичиг → Кирилл үсэг (1941)</p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ulaanbaatar_-_Sukhbaatar_Square.jpg/800px-Ulaanbaatar_-_Sukhbaatar_Square.jpg" alt="Сүхбаатарын талбай">
+                    <div class="image-caption">Сүхбаатарын талбай - Улаанбаатар хотын зүрх</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 3 -->
+            <div class="subsection">
+                <h3>Ардчилсан шинэчлэл (1990)</h3>
+                <div class="content-block">
+                    <p><strong>1990 оны Ардчилсан хувьсгал</strong> - Цус урсгалгүй ардчилсан өөрчлөлт хийж, олон намын тогтолцоонд шилжсэн түүхэн үйл явдал.</p>
+                    
+                    <ul>
+                        <li>Залуучуудын ардчилсан хөдөлгөөн эхэлсэн</li>
+                        <li>МАХН-аас олон намын системд шилжсэн</li>
+                        <li>Зах зээлийн эдийн засагт шилжсэн</li>
+                        <li>1992 онд шинэ Үндсэн хууль батлагдсан</li>
+                    </ul>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Салбар</th>
+                                <th>Өмнөх тогтолцоо</th>
+                                <th>Шинэ тогтолцоо</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Улс төр</td>
+                                <td>Нэг намын систем</td>
+                                <td>Олон намын ардчилал</td>
+                            </tr>
+                            <tr>
+                                <td>Эдийн засаг</td>
+                                <td>Төлөвлөгөөт</td>
+                                <td>Зах зээл</td>
+                            </tr>
+                            <tr>
+                                <td>Өмч</td>
+                                <td>Төрийн</td>
+                                <td>Хувьчлагдсан</td>
+                            </tr>
+                            <tr>
+                                <td>Гадаад бодлого</td>
+                                <td>ЗХУ хамтран</td>
+                                <td>Олон тал, татгалзсан</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 4 -->
+            <div class="subsection">
+                <h3>Орчин үеийн хөгжил (1992-өнөөг хүртэл)</h3>
+                <div class="content-block">
+                    <p>1992 оны Үндсэн хуулиар Монгол Улс ардчилсан, зах зээлийн эдийн засагтай улс болсон.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🌏 21-р зууны Монгол:</h4>
+                    <p>• <strong>Улс төр:</strong> Парламентын систем, тэгш сонгууль<br>
+                    • <strong>Эдийн засаг:</strong> Уул уурхай, мал аж ахуй, үйлчилгээ<br>
+                    • <strong>Гадаад харилцаа:</strong> НҮБ, АН, ОБЕГ гишүүн<br>
+                    • <strong>Соёл боловсрол:</strong> Монгол бичиг сэргээх, олон улсын харилцаа</p>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Blue_Sky_Tower_and_Central_Tower_-_Ulaanbaatar.jpg/800px-Blue_Sky_Tower_and_Central_Tower_-_Ulaanbaatar.jpg" alt="Орчин үеийн Улаанбаатар">
+                    <div class="image-caption">Орчин үеийн Улаанбаатар - Монголын хөгжлийн бэлгэ тэмдэг</div>
+                </div>
+            </div>
+            
+            <!-- Задаргаа 5 -->
+            <div class="subsection">
+                <h3>Сорилт ба ирээдүй</h3>
+                <div class="content-block">
+                    <p>Монгол Улс орчин үед олон сорилттой тулгарч байна.</p>
+                    
+                    <ul>
+                        <li><strong>Эдийн засаг:</strong> Баялагийн тэгш хуваарилалт, ядуурал</li>
+                        <li><strong>Байгаль орчин:</strong> Агаарын бохирдол, уур амьсгалын өөрчлөлт</li>
+                        <li><strong>Шилжилт хөдөлгөөн:</strong> Хөдөөгөөс хотрууруу</li>
+                        <li><strong>Боловсрол:</strong> Чанарын сайжруулалт</li>
+                        <li><strong>Ирээдүй:</strong> Тогтвортой хөгжил, дижитал эдийн засаг, эрчим хүч</li>
+                    </ul>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Салбар</th>
+                                <th>Одоогийн байдал</th>
+                                <th>Хөгжлийн чиглэл</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Эдийн засаг</td>
+                                <td>Уул уурхайд түшиглэсэн</td>
+                                <td>Төрөлжилт, инновац</td>
+                            </tr>
+                            <tr>
+                                <td>Технологи</td>
+                                <td>Хөгжиж буй</td>
+                                <td>Дижитал үндэстэн</td>
+                            </tr>
+                            <tr>
+                                <td>Боловсрол</td>
+                                <td>Боломжит</td>
+                                <td>Чанарын өсөлт</td>
+                            </tr>
+                            <tr>
+                                <td>Байгаль</td>
+                                <td>Бохирдолтой</td>
+                                <td>Ногоон эдийн засаг</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mongolian_Landscape.jpg/800px-Mongolian_Landscape.jpg" alt="Монголын байгаль">
+                    <div class="image-caption">Монголын уужим байгаль - Бидний хамгаалах ёстой өв</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>📚 11-р ангийн Монголын түүх | Бүрэн хэмжээний хичээл</p>
+        <p>© 2026 Боловсролын төв | Монголын түүхийг судалж, хайрлая!</p>
+    </footer>
+</body>
+</html>
